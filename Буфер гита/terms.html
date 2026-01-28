@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Требования</title>
+    <style>
+        :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #10b981;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --gray: #94a3b8;
+    --border: #e2e8f0;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+body {
+    background-color: #f1f5f9;
+    color: var(--dark);
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;   
+}
+/* Header styles */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.logo i {
+    font-size: 2rem;
+}
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.logo-subtext {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 2px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.delivery-section {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: 2563eb;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.condition-item {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid #2563eb;
+}
+
+h3 {
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+li:before {
+    content: "•";
+    color: #2563eb;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #e8f5e9;
+    color: #2563eb;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.highlight {
+    background-color: #e8f5e9;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    border-left: 4px solid #2563eb;
+}
+/* Footer */
+footer {
+    background: var(--dark);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+.footer-links {
+    list-style: none;
+}
+.footer-links li {
+    margin-bottom: 8px;
+}
+.footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.footer-links a:hover {
+    color: var(--secondary);
+}
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #334155;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .requirements-section {
+        padding: 1rem;
+    }
+}
+/* кнопка */ 
+.btn-up {
+            /* фиксированное позиционирование */
+            position: fixed;
+            /* цвет фона */
+            background-color: #673ab7;
+            /* расстояние от правого края окна браузера */
+            right: 20px;
+            /* расстояние от нижнего края окна браузера */
+            bottom: 0;
+            /* скругление верхнего левого угла */
+            border-top-left-radius: 8px;
+            /* скругление верхнего правого угла */
+            border-top-right-radius: 8px;
+            /* вид курсора */
+            cursor: pointer;
+            /* отображение элемента как flex */
+            display: flex;
+            /* выравниваем элементы внутри элемента по центру вдоль поперечной оси */
+            align-items: center;
+            /* выравниваем элементы внутри элемента по центру вдоль главной оси */
+            justify-content: center;
+            /* ширина элемента */
+            width: 60px;
+            /* высота элемента */
+            height: 50px;
+          }
+          
+          .btn-up::before {
+            content: "";
+            width: 40px;
+            height: 40px;
+            background: transparent no-repeat center center;
+            background-size: 100% 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
+          }
+          
+          .btn-up_hide {
+            display: none;
+          }
+          
+          @media (hover: hover) and (pointer: fine) {
+            .btn-up:hover {
+              background-color: #512da8; /* цвет заднего фона при наведении */
+            }
+          }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div>
+                        <div class="logo-text">Закупка Товаров</div>
+                        <div class="logo-subtext">Коммерческие предложения</div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <section class="delivery-section">
+            <h2>Общие положения</h2>
+            <div class="condition-item">
+                <ul>
+                    <li>Все поставки осуществляются на основании заключенного договора поставки</li>
+                    <li>Условия поставки могут быть индивидуальными для каждого поставщика</li>
+                    <li>Изменения в условия поставки вносятся дополнительными соглашениями</li>
+                    <li>Поставщик обязуется соблюдать все условия, указанные в договоре</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <section class="delivery-section">
+            <h2>Порядок оформления заказа</h2>
+            <div class="condition-item">
+                <h3>Процедура заказа</h3>
+                <ul>
+                    <li>Заказ оформляется за 3 рабочих дня до даты поставки</li>
+                    <li>Подтверждение заказа происходит в течение 24 часов</li>
+                    <li>Изменения в подтвержденный заказ возможны не позднее, чем за 1 рабочий день до поставки</li>
+                    <li>Экстренные закавы принимаются по согласованию с менеджером</li>
+                </ul>
+            </div>  
+        </section>
+    </div>
+    <div class="container">
+        <section class="delivery-section">
+            <h2>Сроки и график поставок</h2>
+            <div class="condition-item">
+                <h3>Регламент поставок</h3>
+                <ul>
+                    <li>Поставки осуществляются с понедельника по субботу</li>
+                    <li>Время приемки товара: с 09:00 до 17:00</li>
+                    <li>График поставок согласовывается ежеквартально</li>
+                    <li>Изменение графика возможно по письменному уведомлению за 5 рабочих дней</li>
+                </ul>
+            </div>
+            
+            <div class="condition-item">
+                <h3>Сроки доставки</h3>
+                <ul>
+                    <li>В пределах города: в течение 24 часов после подтверждения заказа</li>
+                    <li>Пригородная зона (до 50 км): 1-4 рабочих дня</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <section class="delivery-section">
+            <h2>Условия оплаты</h2>
+            <div class="condition-item">
+                <h3>Формы расчетов</h3>
+                <ul>
+                    <li>Безналичный расчет по счету</li>
+                    <li>Отсрочка платежа: до 14 календарных дней для постоянных поставщиков</li>      
+                </ul>
+            </div>
+            
+            <div class="condition-item">
+                <h3>Стоимость и тарифы</h3>
+                <ul>
+                    <li>Цены указываются в рублях за 1 кг</li>
+                    <li>Сезонные колебания цен согласовываются дополнительно</li>
+                    <li>Транспортные расходы включаются в стоимость товара</li>
+                </ul>
+            </div>
+
+        </section>
+    </div>
+    <div class="container">
+        <section class="delivery-section">
+            <h2>Приемка товара</h2>
+            <div class="condition-item">
+                <h3>Процедура приемки</h3>
+                <ul>
+                    <li>Приемка осуществляется в присутствии представителя поставщика</li>
+                    <li>Товар принимается по количеству и качеству</li>
+                    <li>Товарная накладная (УПД) подписывается в день поставки</li>
+                    <li>Претензии по качеству принимаются в течение 24 часов</li>
+                </ul>
+            </div>
+            
+            <div class="condition-item">
+                <h3>Основания для отказа в приемке</h3>
+                <ul>
+                    <li>Несоответствие товара заявленным характеристикам</li>
+                    <li>Нарушение сроков годности</li>
+                    <li>Повреждение упаковки, влияющее на качество товара</li>
+                    <li>Несоблюдение температурного режима при транспортировке</li>
+                    <li>Отсутствие сопроводительных документов</li>
+                    <li>Отсутствие маркировки</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <section class="delivery-section">
+            <h2>Ответственность сторон</h2>
+            <div class="condition-item">
+                <h3>Обязательства поставщика</h3>
+                <ul>
+                    <li>Соблюдение согласованных сроков поставки</li>
+                    <li>Обеспечение надлежащего качества продукции</li>
+                    <li>Своевременное уведомление о форс-мажорных обстоятельствах</li>
+                </ul>
+            </div>
+            
+            <div class="condition-item">
+                <h3>Обязательства покупателя</h3>
+                <ul>
+                    <li>Своевременная приемка товара</li>
+                    <li>Обеспечение условий для разгрузки</li>
+                    <li>Соблюдение сроков оплаты</li>
+                    <li>Уведомление о претензиях в установленные сроки</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <p><strong>Важно:</strong> За несвоевременную поставку товара поставщик уплачивает пеню в размере 0,1% от стоимости непоставленного товара за каждый день просрочки.</p>
+            </div>
+        </section>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Закупка Товаров</h3>
+                    <p>Мы закупаем только качественные продукты у надежных поставщиков! Сотрудничаем на взаимовыгодных условиях.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> v.kratyuk-ribera@yandex.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 (978) 068-42-13</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Епатория, ул. Симферопольская, д. 57</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Дополнительно</h3>
+                    <ul class="footer-links">
+                        <li><a href="conditions.html"><i class="fas fa-file-contract"></i> Требования к поставщикам</a></li>
+                        <li><a href="#"><i class="fas fa-box"></i> Условия поставки</a></li>
+                        <li><a href="index.html"><i class="fas fa-question-circle"></i> Главная</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Закупка Товаров. ООО "УК Риэлт Менеджмент" Все права защищены.
+            </div>
+        </div>
+    </footer>
+    <div class="btn-up btn-up_hide"></div>
+    <script>
+        // Кнопка
+const btnUp = {
+    el: document.querySelector('.btn-up'),
+    show() {
+      // удалим у кнопки класс btn-up_hide
+      this.el.classList.remove('btn-up_hide');
+    },
+    hide() {
+      // добавим к кнопке класс btn-up_hide
+      this.el.classList.add('btn-up_hide');
+    },
+    addEventListener() {
+      // при прокрутке содержимого страницы
+      window.addEventListener('scroll', () => {
+        // определяем величину прокрутки
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        // если страница прокручена больше чем на 400px, то делаем кнопку видимой, иначе скрываем
+        scrollY > 400 ? this.show() : this.hide();
+      });
+      // при нажатии на кнопку .btn-up
+      document.querySelector('.btn-up').onclick = () => {
+        // переместим в начало страницы
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
+  
+  btnUp.addEventListener();
+    </script>
+</body>
+</html>

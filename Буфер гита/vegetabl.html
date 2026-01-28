@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запрос КП</title>
+    <style>
+        :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #10b981;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --gray: #94a3b8;
+    --border: #e2e8f0;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+body {
+    background-color: #f1f5f9;
+    color: var(--dark);
+    line-height: 1.6;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;   
+}
+/* Header styles */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.logo i {
+    font-size: 2rem;
+}
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.logo-subtext {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 2px;
+}
+/* Hero section */
+.hero {
+    padding: 3rem 0;
+    text-align: center;
+    background: white;
+    margin: 30px 20px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+}
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+}
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    color: #475569;
+}
+.highlight {
+    background: linear-gradient(120deg, #dbf4ff, #fff1f1);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+ /* Products Section */
+ .info-box {
+    background: rgb(235, 235, 235);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+.info-box h2 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+.product-list {
+    list-style: none;
+    margin-top: 20px;
+}
+.product-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px dashed #cbd5e1;
+    font-size: 1.1rem;
+}
+.product-item:last-child {
+    border-bottom: none;
+}
+.product-name {
+    font-weight: 400;
+}
+.product-quantity {
+    background: var(--primary);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+/* Timeline */
+.section-title {
+    text-align: center;
+    margin: 0 0 1.5rem;
+    color: var(--primary-dark);
+    font-size: 1.8rem;
+}
+.timeline {
+    display: flex;
+    justify-content: center;
+    margin: 3rem auto;
+    max-width: 800px;
+}
+.timeline-step {
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    flex: 1;
+}
+.timeline-step:not(:last-child):after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    right: -10px;
+    height: 2px;
+    width: 20px;
+    background: var(--gray);
+}
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-weight: 700;
+}
+.step-text {
+    font-size: 0.95rem;
+    color: #475569;
+}
+/* Contact section */
+.contact-section {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+.contact-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-dark);
+}
+.contact-info {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #475569;
+}
+.email-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #eff6ff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid #dbeafe;
+}
+.email-box:hover {
+    background: #dbeafe;
+    transform: scale(1.03);
+}
+.email-box i {
+    color: var(--secondary);
+}
+/* Footer */
+footer {
+    background: var(--dark);
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+}
+.footer-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+.footer-links {
+    list-style: none;
+}
+.footer-links li {
+    margin-bottom: 8px;
+}
+.footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.footer-links a:hover {
+    color: var(--secondary);
+}
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #334155;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+/* Responsive design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .timeline {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .timeline-step:not(:last-child):after {
+        display: none;
+    }
+    
+    .email-box {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
+    
+    .product-item {
+        min-width: 120px;
+        padding: 12px 15px;
+    }
+    
+    .product-icon {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .hero {
+        padding: 2rem 1rem;
+        margin: 20px 10px;
+    }
+    
+    .product-list-container {
+        padding: 20px 15px;
+    }
+    
+    .products-horizontal {
+        gap: 15px;
+    }
+    
+    .product-item {
+        min-width: 100px;
+        padding: 10px;
+    }
+    
+    .product-name {
+        font-size: 1rem;
+    }
+    
+    .product-quantity {
+        font-size: 1.2rem;
+    }
+}     
+ /* кнопка */ 
+.btn-up {
+            /* фиксированное позиционирование */
+            position: fixed;
+            /* цвет фона */
+            background-color: #673ab7;
+            /* расстояние от правого края окна браузера */
+            right: 20px;
+            /* расстояние от нижнего края окна браузера */
+            bottom: 0;
+            /* скругление верхнего левого угла */
+            border-top-left-radius: 8px;
+            /* скругление верхнего правого угла */
+            border-top-right-radius: 8px;
+            /* вид курсора */
+            cursor: pointer;
+            /* отображение элемента как flex */
+            display: flex;
+            /* выравниваем элементы внутри элемента по центру вдоль поперечной оси */
+            align-items: center;
+            /* выравниваем элементы внутри элемента по центру вдоль главной оси */
+            justify-content: center;
+            /* ширина элемента */
+            width: 60px;
+            /* высота элемента */
+            height: 50px;
+          }
+          
+          .btn-up::before {
+            content: "";
+            width: 40px;
+            height: 40px;
+            background: transparent no-repeat center center;
+            background-size: 100% 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");
+          }
+          
+          .btn-up_hide {
+            display: none;
+          }
+          
+          @media (hover: hover) and (pointer: fine) {
+            .btn-up:hover {
+              background-color: #512da8; /* цвет заднего фона при наведении */
+            }
+          }
+    </style>
+</head>
+<body>
+     <!-- Header -->
+     <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div>
+                        <div class="logo-text">Закупка Товаров</div>
+                        <div class="logo-subtext">Коммерческие предложения</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </header>
+     <!-- Hero Section -->
+     <div class="container">
+        <section class="hero">
+            <h1>Предстоящая закупка товаров</h1>
+            <p>На <span class="highlight">январь 2026 года</span> запланировано приобретение следующих товаров. Указан предполагаемый объем, закупка будет осуществляться равными частями на протяжении текущего месяца. Просим вас направить коммерческие предложения с указанием цен и условий поставки.</p>
+        </section>
+    </div>
+    <!-- Products Section -->
+    <div class="container">
+        <div class="info-box">
+            <h2 class="section-title">Планируемые закупки</h2>
+                <ul class="product-list">
+                    <li class="product-item">
+                        <span class="product-name">Картофель</span>
+                        <span class="product-quantity">100 кг</span>
+                    </li>
+                    <li class="product-item">
+                        <span class="product-name">Филе куриное ЗАМ</span>
+                        <span class="product-quantity">550 кг</span>
+                    </li>
+                    <li class="product-item">
+                        <span class="product-name">Помидор</span>
+                        <span class="product-quantity">180 кг</span>
+                    </li>
+                    <li class="product-item">
+                        <span class="product-name">Перец</span>
+                        <span class="product-quantity">200 кг</span>
+                    </li>
+                    <li class="product-item">
+                        <span class="product-name">Огурец</span>
+                        <span class="product-quantity">500 кг</span>
+                    </li>
+                    <li class="product-item">
+                        <span class="product-name">Яйцо барана</span>
+                        <span class="product-quantity">100 кг</span>
+                    </li>
+                    <li class="product-item">
+                        <span class="product-name">Яйцо куриное</span>
+                        <span class="product-quantity">20000 шт</span>
+                    </li>
+                </ul>
+            </div>
+    </div>
+    <!-- Timeline -->
+    <div class="container">
+        <h2 class="section-title">Процесс подачи предложений</h2>
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="step-number">1</div>
+                <div class="step-text">Подготовьте коммерческое предложение</div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">2</div>
+                <div class="step-text">Укажите цену и условия поставки</div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">3</div>
+                <div class="step-text">Отправьте на указанную почту</div>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">4</div>
+                <div class="step-text">Мы рассмотрим ваше предложение</div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact Section -->
+    <div class="container">
+        <div class="contact-section">
+            <h2 class="contact-title">Отправьте ваше предложение</h2>
+            <p class="contact-info">Просим присылать ваши коммерческие предложения на указанную электронную почту до 20 декабря 2025 года.</p>
+            <a href="mailto:v.kratyuk-ribera@yandex.ru" class="email-box">
+                <i class="fas fa-envelope"></i>
+                v.kratyuk-ribera@yandex.ru
+            </a>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">Закупка Товаров</h3>
+                    <p>Мы закупаем только качественные продукты у надежных поставщиков! Сотрудничаем на взаимовыгодных условиях.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Контакты</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> v.kratyuk-ribera@yandex.ru</li>
+                        <li><i class="fas fa-phone"></i> +7 (978) 068-42-13</li>
+                        <li><i class="fas fa-map-marker-alt"></i> г. Епатория, ул. Симферопольская, д. 57</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Дополнительно</h3>
+                    <ul class="footer-links">
+                        <li><a href="conditions.html"><i class="fas fa-file-contract"></i> Требования к поставщикам</a></li>
+                        <li><a href="terms.html"><i class="fas fa-box"></i> Условия поставки</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> Частые вопросы</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 Закупка Товаров. ООО "УК Риэлт Менеджмент" Все права защищены.
+            </div>
+        </div>
+    </footer>
+    <div class="btn-up btn-up_hide"></div>
+    <script>
+        // Анимация элементов при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    // Анимация карточек товаров
+    const productItems = document.querySelectorAll('.product-item');
+    productItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, 300 + index * 100);
+    });
+    
+    // Анимация таймлайна
+    const timelineSteps = document.querySelectorAll('.timeline-step');
+    timelineSteps.forEach((step, index) => {
+        step.style.opacity = '0';
+        
+        setTimeout(() => {
+            step.style.transition = 'opacity 0.5s ease';
+            step.style.opacity = '1';
+        }, 800 + index * 200);
+    });
+});
+// Кнопка
+const btnUp = {
+    el: document.querySelector('.btn-up'),
+    show() {
+      // удалим у кнопки класс btn-up_hide
+      this.el.classList.remove('btn-up_hide');
+    },
+    hide() {
+      // добавим к кнопке класс btn-up_hide
+      this.el.classList.add('btn-up_hide');
+    },
+    addEventListener() {
+      // при прокрутке содержимого страницы
+      window.addEventListener('scroll', () => {
+        // определяем величину прокрутки
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        // если страница прокручена больше чем на 400px, то делаем кнопку видимой, иначе скрываем
+        scrollY > 400 ? this.show() : this.hide();
+      });
+      // при нажатии на кнопку .btn-up
+      document.querySelector('.btn-up').onclick = () => {
+        // переместим в начало страницы
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
+  
+  btnUp.addEventListener();
+    </script>
+</body>
+</html>
