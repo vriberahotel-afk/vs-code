@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>FreshOpt — оптовые овощи и фрукты для ресторанов и отелей</title>
+  <!-- Подключение иконок Remix Icon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+  <style>
+    /* === СБРОС И БАЗОВЫЕ ПЕРЕМЕННЫЕ === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0e0e0c;
+      --bg-card: #1a1a17;
+      --bg-elevated: #242420;
+      --emerald: #2e7d32;
+      --emerald-light: #4caf50;
+      --gold: #c8a96e;
+      --gold-light: #e0d3b8;
+      --text-primary: #f0ede5;
+      --text-secondary: #b0aea5;
+      --text-muted: #7a7972;
+      --border-subtle: rgba(200, 169, 110, 0.15);
+      --border-active: rgba(200, 169, 110, 0.4);
+      --shadow-dark: 0 20px 40px -20px rgba(0,0,0,0.6);
+      --shadow-gold: 0 12px 28px -8px rgba(200, 169, 110, 0.15);
+      --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: -0.01em;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 36px;
+    }
+
+    /* === ТИПОГРАФИКА === */
+    h2 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 550;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-top: 12px;
+      max-width: 600px;
+      font-weight: 400;
+    }
+
+    /* === КНОПКИ === */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      border-radius: 40px;
+      font-weight: 550;
+      text-decoration: none;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: var(--emerald);
+      color: white;
+      box-shadow: 0 10px 25px -8px rgba(46, 125, 50, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: #246b28;
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px -10px rgba(46, 125, 50, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--text-primary);
+      color: var(--text-primary);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--text-primary);
+      color: var(--bg-dark);
+      border-color: var(--text-primary);
+    }
+
+    /* === ХЕДЕР === */
+    header {
+      padding: 20px 0;
+      background: rgba(14, 14, 12, 0.85);
+      backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .logo {
+      font-size: 1.9rem;
+      font-weight: 650;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo i {
+      font-size: 2rem;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 480;
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0%;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .contact-phone {
+      font-weight: 550;
+      color: var(--text-primary);
+      background: rgba(200, 169, 110, 0.08);
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* === ГЕРОЙ === */
+    .hero {
+      padding: 80px 0 90px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      background: rgba(200, 169, 110, 0.1);
+      color: var(--gold-light);
+      padding: 8px 22px;
+      border-radius: 40px;
+      font-weight: 530;
+      display: inline-block;
+      margin-bottom: 28px;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 4.2rem);
+      font-weight: 550;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+      margin-bottom: 22px;
+    }
+
+    .highlight {
+      color: var(--emerald-light);
+      background: linear-gradient(120deg, rgba(46, 125, 50, 0.25) 0%, rgba(46, 125, 50, 0.08) 70%);
+      padding: 0 6px;
+    }
+
+    .hero-desc {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+      max-width: 90%;
+    }
+
+    .hero-image {
+      background: linear-gradient(145deg, #1a2a1a 0%, #1e2e1a 40%, #1a2216 100%);
+      border-radius: 48px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-dark);
+      border: 1px solid rgba(46, 125, 50, 0.2);
+    }
+
+    .hero-image i {
+      font-size: 10rem;
+      color: var(--emerald);
+      opacity: 0.85;
+      filter: drop-shadow(0 20px 24px rgba(0,0,0,0.5));
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 36px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item h3 {
+      font-size: 2.1rem;
+      font-weight: 550;
+      color: var(--gold);
+    }
+
+    .stat-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* === АЛГОРИТМ РАБОТЫ === */
+    .steps-section {
+      padding: 90px 0;
+      background: var(--bg-card);
+      border-radius: 60px 60px 0 0;
+      margin-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 52px;
+    }
+
+    .step-card {
+      background: var(--bg-elevated);
+      padding: 36px 22px 32px;
+      border-radius: 32px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .step-card:hover {
+      border-color: var(--border-active);
+      background: #2a2a25;
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-6px);
+    }
+
+    .step-icon {
+      font-size: 2.6rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .step-number {
+      font-weight: 800;
+      color: var(--emerald);
+      opacity: 0.2;
+      font-size: 2.6rem;
+      margin-bottom: 6px;
+    }
+
+    .step-card h4 {
+      font-size: 1.4rem;
+      font-weight: 550;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .step-card p {
+      color: var(--text-secondary);
+    }
+
+    /* === ПРЕИМУЩЕСТВА === */
+    .benefits {
+      padding: 90px 0;
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 44px;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+      background: var(--bg-card);
+      padding: 28px;
+      border-radius: 28px;
+      transition: 0.3s;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .benefit-item:hover {
+      background: var(--bg-elevated);
+      border-color: var(--border-active);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .benefit-item i {
+      font-size: 2.2rem;
+      color: var(--gold);
+      background: rgba(200, 169, 110, 0.1);
+      padding: 14px;
+      border-radius: 18px;
+    }
+
+    .benefit-item strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .benefit-item p {
+      color: var(--text-secondary);
+    }
+
+    /* === КОНТАКТНЫЙ БЛОК === */
+    .contact-banner {
+      background: var(--bg-card);
+      border-radius: 48px;
+      padding: 60px 48px;
+      margin: 60px 0;
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-dark);
+    }
+
+    .contact-banner h2 {
+      margin-bottom: 14px;
+    }
+
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
+    .contact-card {
+      background: var(--bg-elevated);
+      padding: 24px 38px;
+      border-radius: 32px;
+      font-weight: 550;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      border: 1px solid var(--border-subtle);
+      transition: var(--transition);
+      color: var(--text-primary);
+    }
+
+    .contact-card:hover {
+      border-color: var(--border-active);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .footer {
+      padding: 30px 0;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .contact-banner {
+        padding: 40px 24px;
+      }
+      .nav-links {
+        gap: 16px;
+      }
+      .container {
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <i class="ri-leaf-fill"></i> FreshOpt "ИП Федченко"
+      </div>
+      <div class="nav-links">
+        <a href="#">Главная</a>
+        <a href="#how">Как работаем</a>
+        <a href="#about">Преимущества</a>
+        <a href="#contact" class="contact-phone"><i class="ri-phone-fill"></i> +7 (495) 200-30-40</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Герой -->
+    <section class="hero">
+      <div>
+        <span class="hero-badge">🥦 Только B2B · HoReCa</span>
+        <h1>Свежие <span class="highlight">овощи и фрукты</span> для вашего бизнеса</h1>
+        <p class="hero-desc">Прямые поставки для ресторанов, отелей и столовых. Фермерское качество, ежедневная логистика, индивидуальный подход.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#contact" class="btn btn-primary">Связаться с нами <i class="ri-arrow-right-line"></i></a>
+          <a href="#how" class="btn btn-outline">Как мы работаем</a>
+        </div>
+        <div class="stats-row">
+          <div class="stat-item"><h3>350+</h3><p>активных клиентов</p></div>
+          <div class="stat-item"><h3>98%</h3><p>своевременных доставок</p></div>
+          <div class="stat-item"><h3>24ч</h3><p>поддержка менеджера</p></div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <i class="ri-bowl-fill"></i>
+      </div>
+    </section>
+
+    <!-- Алгоритм работы: заказ → доставка → оплата → повторный заказ -->
+    <section id="how" class="steps-section">
+      <div class="container" style="padding:0;">
+        <h2>Понятный алгоритм работы</h2>
+        <p class="section-subtitle">От первого звонка до регулярных поставок — прозрачно и без задержек.</p>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon"><i class="ri-shopping-basket-2-line"></i></div>
+            <h4>Заказ продукции</h4>
+            <p>Вы отправляете заявку через сайт или мессенджер. Менеджер подбирает ассортимент под ваш профиль (отель, кафе).</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon"><i class="ri-truck-line"></i></div>
+            <h4>Доставка</h4>
+            <p>Ежедневная логистика с 6:00 до 12:00. Соблюдаем температурный режим, привозим точно в указанное окно.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon"><i class="ri-bank-card-line"></i></div>
+            <h4>Оплата</h4>
+            <p>Безналичный расчет, отсрочка платежа для постоянных партнеров. ЭДО и закрывающие документы сразу.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-icon"><i class="ri-refresh-line"></i></div>
+            <h4>Повторный заказ</h4>
+            <p>Персональный график поставок. Вы просто подтверждаете список — мы уже знаем ваши предпочтения.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Почему мы (для отелей/ресторанов) -->
+    <section id="about" class="benefits">
+      <h2>Создано для профессионалов кухни</h2>
+      <p class="section-subtitle">Мы понимаем потребности шеф-поваров и управляющих.</p>
+      <div class="benefit-grid">
+        <div class="benefit-item">
+          <i class="ri-check-double-line"></i>
+          <div><strong>Фермерская свежесть</strong><p>Урожай с локальных хозяйств, строгий контроль зрелости.</p></div>
+        </div>
+        <div class="benefit-item">
+          <i class="ri-calendar-check-line"></i>
+          <div><strong>Гибкий график</strong><p>Поставки 7 дней в неделю, даже в праздники.</p></div>
+        </div>
+        <div class="benefit-item">
+          <i class="ri-leaf-line"></i>
+          <div><strong>Органика и стандарты</strong><p>Сертификаты на продукцию, работа с премиум-сегментом.</p></div>
+        </div>
+        <div class="benefit-item">
+          <i class="ri-price-tag-3-line"></i>
+          <div><strong>Оптовые цены</strong><p>Фиксированный прайс на неделю, скидки от объема.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контактный блок (без формы) -->
+    <section id="contact" class="contact-banner">
+      <h2>Готовы обсудить сотрудничество?</h2>
+      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">Позвоните или напишите — персональный менеджер подберет условия для вашего ресторана или отеля.</p>
+      <div class="contact-methods">
+        <div class="contact-card">
+          <i class="ri-phone-fill" style="font-size:1.8rem; color:var(--gold);"></i>
+          <span>+7 (495) 200-30-40</span>
+        </div>
+        <div class="contact-card">
+          <i class="ri-mail-line" style="font-size:1.8rem; color:var(--gold);"></i>
+          <span>sales@freshopt.ru</span>
+        </div>
+      </div>
+      <p style="margin-top: 28px; color: var(--text-muted);"><i class="ri-time-line"></i> Принимаем заявки круглосуточно · доставка на следующий день</p>
+    </section>
+
+    <footer class="footer">
+      <span>© 2025 FreshOpt — оптовые овощи и фрукты</span>
+      <span>г. Москва, ул. Складочная, 12  |  info@freshopt.ru</span>
+    </footer>
+  </main>
+
+  <script>
+    (function() {
+      // Плавная прокрутка для навигации
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === "#") return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
